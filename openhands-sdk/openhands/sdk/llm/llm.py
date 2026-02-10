@@ -429,7 +429,6 @@ class LLM(BaseModel, RetryMixin, NonNativeToolCallingMixin):
     @model_validator(mode="after")
     def _set_env_side_effects(self):
         # Reasoning effort from env var
-        # Reasoning effort from env var
         effort_from_env = os.getenv("REASONING_EFFORT")
         if effort_from_env:
             effort_normalized = effort_from_env.strip().lower()
@@ -440,7 +439,7 @@ class LLM(BaseModel, RetryMixin, NonNativeToolCallingMixin):
                     Literal["low", "medium", "high", "xhigh", "none"],
                     effort_normalized,
                 )
-                logger.debug(f"Reasoning effort after change:{self.reasoning_effor}")
+                logger.debug(f"Reasoning effort after change:{self.reasoning_effort}")
         if self.openrouter_site_url:
             os.environ["OR_SITE_URL"] = self.openrouter_site_url
         if self.openrouter_app_name:
